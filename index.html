@@ -143,18 +143,19 @@
     </div>
 
     <script>
-        // Generate ALL 24-hour AM/PM Time Options dynamically into DataList (every 30 mins)
+        // Generate ALL 24-hour AM/PM Time Options dynamically into DataList (every 1 minute)
         const timeDatalist = document.getElementById('timeOptions');
-        for (let i = 0; i < 24; i++) { // Modified to start from 0 to 23 (Full 24 hours)
-            for (let j = 0; j < 60; j += 30) {
+        let optionsHTML = '';
+        for (let i = 0; i < 24; i++) { 
+            for (let j = 0; j < 60; j++) { // Changed to j++ to include every single minute
                 let hour = i % 12 || 12;
                 let ampm = i < 12 ? 'AM' : 'PM';
-                let min = j === 0 ? '00' : '30';
+                let min = j < 10 ? '0' + j : j; // Ensure two digits for minutes (e.g. 05)
                 let displayHour = hour < 10 ? '0' + hour : hour;
-                let timeStr = `${displayHour}:${min} ${ampm}`;
-                timeDatalist.innerHTML += `<option value="${timeStr}">`;
+                optionsHTML += `<option value="${displayHour}:${min} ${ampm}">`;
             }
         }
+        timeDatalist.innerHTML = optionsHTML;
 
         const bakeryItems = [
             { id: 'item1', name: 'Pain Croissant', price: 2.00 },
