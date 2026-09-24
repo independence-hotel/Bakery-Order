@@ -143,9 +143,9 @@
     </div>
 
     <script>
-        // Generate AM/PM Time Options dynamically into DataList
+        // Generate ALL 24-hour AM/PM Time Options dynamically into DataList (every 30 mins)
         const timeDatalist = document.getElementById('timeOptions');
-        for (let i = 6; i <= 20; i++) { 
+        for (let i = 0; i < 24; i++) { // Modified to start from 0 to 23 (Full 24 hours)
             for (let j = 0; j < 60; j += 30) {
                 let hour = i % 12 || 12;
                 let ampm = i < 12 ? 'AM' : 'PM';
