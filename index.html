@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BROWN Bakery - Order Form</title>
+    <title>BROWN Bakery - Order App</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,13 +11,10 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
                     colors: {
                         navyPrimary: '#1B365D',
                         navyDark: '#0A192F',
-                        goldAccent: '#D4AF37',
                         bgSoft: '#F8FAFC',
                         cardWhite: '#FFFFFF'
                     }
@@ -28,109 +25,104 @@
     <style>
         body { -webkit-tap-highlight-color: transparent; }
         ::-webkit-scrollbar { width: 0px; background: transparent; }
+        input[type="number"]::-webkit-inner-spin-button, 
+        input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
         .btn-press:active { transform: scale(0.96); transition: transform 0.1s; }
     </style>
 </head>
-<body class="bg-bgSoft font-sans pb-32 text-slate-800">
+<body class="bg-bgSoft font-sans pb-28 text-slate-800 text-xs sm:text-sm">
 
-    <!-- Premium Header with Logo -->
-    <div class="bg-navyPrimary text-center py-6 px-4 shadow-xl relative overflow-hidden rounded-b-3xl mb-5">
-        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/5 rounded-full blur-2xl"></div>
-        <div class="absolute -left-10 -top-10 w-40 h-40 bg-goldAccent/10 rounded-full blur-2xl"></div>
-        
-        <!-- Logo Container -->
-        <div class="bg-white/10 backdrop-blur-md p-3 rounded-2xl inline-block mb-3 border border-white/20 shadow-inner">
-            <img src="Logo PNG-white.png" alt="Independence Hotel Logo" class="h-12 mx-auto object-contain" onerror="this.style.display='none'">
+    <!-- Compact Mobile Header -->
+    <div class="bg-navyPrimary text-center py-4 px-3 shadow-md rounded-b-2xl mb-3">
+        <div class="bg-white/10 backdrop-blur-md p-2 rounded-xl inline-block mb-1.5 border border-white/10 shadow-inner">
+            <img src="Logo PNG-white.png" alt="Logo" class="h-8 mx-auto object-contain" onerror="this.style.display='none'">
         </div>
-        
-        <h1 class="text-white text-lg font-extrabold tracking-widest uppercase">BROWN Bakery Order</h1>
-        <p class="text-slate-300 text-xs mt-1 font-medium">Independence Hotel & Resorts</p>
+        <h1 class="text-white text-sm font-extrabold tracking-widest uppercase">BROWN BAKERY ORDER</h1>
+        <p class="text-slate-300 text-[10px] mt-0.5 font-medium tracking-wide">INDEPENDENCE HOTEL BY DARA</p>
     </div>
 
-    <form id="orderForm" class="p-4 max-w-md mx-auto space-y-5">
+    <form id="orderForm" class="px-3 max-w-md mx-auto space-y-3">
         
-        <!-- Order Details Card -->
-        <div class="bg-cardWhite p-5 rounded-2xl shadow-sm border border-slate-200/80 space-y-4">
-            <div class="flex items-center space-x-2 border-b border-slate-100 pb-3">
-                <div class="w-8 h-8 rounded-xl bg-navyPrimary/10 flex items-center justify-center text-navyPrimary">
-                    <i class="fa-solid fa-store text-sm"></i>
-                </div>
-                <h2 class="font-bold text-navyPrimary text-base">Outlet & Schedule</h2>
+        <!-- Compact Order Details Card -->
+        <div class="bg-cardWhite p-3.5 rounded-xl shadow-sm border border-slate-200/80 space-y-2.5">
+            <div class="flex items-center space-x-1.5 border-b border-slate-100 pb-2">
+                <i class="fa-solid fa-store text-navyPrimary text-xs"></i>
+                <h2 class="font-bold text-navyPrimary text-xs uppercase">Outlet & Schedule</h2>
             </div>
             
-            <div class="space-y-3.5">
-                <!-- Branch Selection -->
+            <div class="space-y-2">
                 <div>
-                    <label class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1 block">Shop Name *</label>
+                    <label class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5 block">Shop Name *</label>
                     <div class="relative">
-                        <select id="branch" required class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-navyPrimary focus:border-navyPrimary appearance-none font-semibold text-slate-700">
+                        <select id="branch" required class="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:ring-1 focus:ring-navyPrimary appearance-none font-semibold text-slate-700">
                             <option value="">Select Branch...</option>
                             <option value="BROWN - Independence Beach">BROWN - Independence Beach</option>
                             <option value="BROWN - Seaview">BROWN - Seaview</option>
                             <option value="BROWN - Island View (R9)">BROWN - Island View (R9)</option>
                         </select>
-                        <i class="fa-solid fa-location-dot absolute left-3.5 top-3.5 text-slate-400"></i>
-                        <i class="fa-solid fa-chevron-down absolute right-4 top-4 text-slate-400 text-xs"></i>
+                        <i class="fa-solid fa-location-dot absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                        <i class="fa-solid fa-chevron-down absolute right-3 top-3 text-slate-400 text-[10px]"></i>
                     </div>
                 </div>
 
-                <!-- Date & Time Grid -->
-                <div class="grid grid-cols-2 gap-3">
+                <div class="grid grid-cols-2 gap-2">
                     <div>
-                        <label class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1 block">Order Date *</label>
+                        <label class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5 block">Order Date *</label>
                         <div class="relative">
-                            <input type="date" id="orderDate" required class="w-full pl-9 pr-3 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-navyPrimary font-semibold text-slate-700">
-                            <i class="fa-regular fa-calendar absolute left-3.5 top-3.5 text-slate-400"></i>
+                            <input type="date" id="orderDate" required class="w-full pl-7 pr-2 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:ring-1 focus:ring-navyPrimary font-semibold text-slate-700">
+                            <i class="fa-regular fa-calendar absolute left-2.5 top-2.5 text-slate-400 text-xs"></i>
                         </div>
                     </div>
                     <div>
-                        <label class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1 block">Pickup Time *</label>
+                        <label class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5 block">Pickup Time *</label>
                         <div class="relative">
-                            <input type="time" id="pickupTime" required class="w-full pl-9 pr-3 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-navyPrimary font-semibold text-slate-700">
-                            <i class="fa-regular fa-clock absolute left-3.5 top-3.5 text-slate-400"></i>
+                            <input type="time" id="pickupTime" required class="w-full pl-7 pr-2 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:ring-1 focus:ring-navyPrimary font-semibold text-slate-700">
+                            <i class="fa-regular fa-clock absolute left-2.5 top-2.5 text-slate-400 text-xs"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- Ordered By -->
                 <div>
-                    <label class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1 block">Ordered By *</label>
+                    <label class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5 block">Ordered By *</label>
                     <div class="relative">
-                        <input type="text" id="orderedBy" placeholder="Staff Name" required class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-navyPrimary font-semibold text-slate-700">
-                        <i class="fa-regular fa-user absolute left-3.5 top-3.5 text-slate-400"></i>
+                        <input type="text" id="orderedBy" placeholder="Staff Name" required class="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:ring-1 focus:ring-navyPrimary font-semibold text-slate-700">
+                        <i class="fa-regular fa-user absolute left-3 top-2.5 text-slate-400 text-xs"></i>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Menu Section Title -->
-        <div class="flex items-center justify-between px-1 mt-6 mb-2">
-            <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 rounded-xl bg-navyPrimary/10 flex items-center justify-center text-navyPrimary">
-                    <i class="fa-solid fa-utensils text-sm"></i>
-                </div>
-                <h2 class="font-bold text-navyPrimary text-base">Bakery Menu</h2>
+        <div class="flex items-center justify-between px-1 pt-1">
+            <div class="flex items-center space-x-1.5">
+                <i class="fa-solid fa-utensils text-navyPrimary text-xs"></i>
+                <h2 class="font-bold text-navyPrimary text-xs uppercase">Bakery Menu</h2>
             </div>
-            <span class="text-xs font-bold text-slate-400 uppercase">7 Items</span>
+            <span class="text-[10px] font-bold text-slate-400 uppercase">7 Items</span>
         </div>
 
         <!-- Menu List Container -->
-        <div id="menuContainer" class="space-y-3"></div>
+        <div id="menuContainer" class="space-y-2"></div>
 
         <!-- Sticky Footer Summary -->
-        <div class="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-200 p-4 z-20 shadow-[0_-10px_25px_-5px_rgba(0,0,0,0.1)] rounded-t-3xl">
+        <div class="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-200 p-3 z-20 shadow-lg rounded-t-2xl">
             <div class="max-w-md mx-auto flex items-center justify-between">
                 <div>
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Total Amount</p>
-                    <p class="text-2xl font-black text-navyDark">$<span id="totalDisplay">0.00</span></p>
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Total Quantity</p>
+                    <p class="text-xl font-black text-navyDark"><span id="totalQtyDisplay">0</span> <span class="text-xs font-semibold text-slate-500">units</span></p>
                 </div>
-                <button type="submit" id="submitBtn" class="bg-navyPrimary hover:bg-navyDark text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-navyPrimary/30 transition-all flex items-center space-x-2 btn-press">
+                <button type="submit" id="submitBtn" class="bg-navyPrimary hover:bg-navyDark text-white px-6 py-2.5 rounded-xl text-xs font-bold shadow-md shadow-navyPrimary/20 transition-all flex items-center space-x-1.5 btn-press">
                     <span>PLACE ORDER</span> 
-                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                    <i class="fa-solid fa-paper-plane text-[10px]"></i>
                 </button>
             </div>
         </div>
     </form>
+
+    <!-- Footer Copyright -->
+    <div class="text-center mt-6 mb-4">
+        <p style="font-size: 9px; color: #94a3b8; font-weight: 300;">@2026 Independence Hotel, Sihanoukville</p>
+    </div>
 
     <script>
         const bakeryItems = [
@@ -150,19 +142,18 @@
             quantities[item.id] = 0; 
             
             const card = document.createElement('div');
-            card.className = "bg-cardWhite p-4 rounded-2xl shadow-sm border border-slate-200/80 flex justify-between items-center transition-all hover:border-navyPrimary/40 hover:shadow-md";
+            card.className = "bg-cardWhite p-3 rounded-xl shadow-sm border border-slate-200/80 flex justify-between items-center";
             card.innerHTML = `
-                <div class="flex-1 pr-3">
-                    <h3 class="font-bold text-sm text-slate-900">${item.name}</h3>
-                    <p class="text-navyPrimary text-xs font-bold mt-0.5">$${item.price.toFixed(2)}</p>
+                <div class="flex-1 pr-2">
+                    <h3 class="font-bold text-xs text-slate-900">${item.name}</h3>
                 </div>
-                <div class="flex items-center space-x-2.5 bg-slate-50 rounded-xl p-1.5 border border-slate-200 shadow-inner">
-                    <button type="button" class="w-8 h-8 flex items-center justify-center text-navyPrimary bg-white rounded-lg shadow-sm border border-slate-200 btn-press font-bold hover:bg-slate-50" onclick="updateQty('${item.id}', -1, ${item.price})">
-                        <i class="fa-solid fa-minus text-xs"></i>
+                <div class="flex items-center space-x-1.5 bg-slate-50 rounded-lg p-1 border border-slate-200">
+                    <button type="button" class="w-7 h-7 flex items-center justify-center text-navyPrimary bg-white rounded-md shadow-sm border border-slate-200 btn-press font-bold" onclick="updateQty('${item.id}', -1, ${item.price})">
+                        <i class="fa-solid fa-minus text-[10px]"></i>
                     </button>
-                    <span id="qty-${item.id}" class="font-black text-navyDark w-6 text-center text-sm">0</span>
-                    <button type="button" class="w-8 h-8 flex items-center justify-center text-white bg-navyPrimary rounded-lg shadow-md shadow-navyPrimary/20 btn-press font-bold hover:bg-navyDark" onclick="updateQty('${item.id}', 1, ${item.price})">
-                        <i class="fa-solid fa-plus text-xs"></i>
+                    <input type="number" id="qty-${item.id}" value="0" min="0" class="font-black text-navyDark w-8 text-center text-xs bg-transparent focus:outline-none" oninput="manualInputQty('${item.id}', this.value, ${item.price})">
+                    <button type="button" class="w-7 h-7 flex items-center justify-center text-white bg-navyPrimary rounded-lg shadow-sm btn-press font-bold" onclick="updateQty('${item.id}', 1, ${item.price})">
+                        <i class="fa-solid fa-plus text-[10px]"></i>
                     </button>
                 </div>
             `;
@@ -178,12 +169,26 @@
             if (newQty < 0) return; 
 
             quantities[id] = newQty;
-            document.getElementById(`qty-${id}`).innerText = newQty;
+            document.getElementById(`qty-${id}`).value = newQty;
 
             totalQty += change;
             totalAmount += (change * price);
             
-            document.getElementById('totalDisplay').innerText = totalAmount.toFixed(2);
+            document.getElementById('totalQtyDisplay').innerText = totalQty;
+        };
+
+        window.manualInputQty = function(id, val, price) {
+            let parsedVal = parseInt(val);
+            if (isNaN(parsedVal) || parsedVal < 0) parsedVal = 0;
+            
+            let oldQty = quantities[id];
+            let diff = parsedVal - oldQty;
+            
+            quantities[id] = parsedVal;
+            totalQty += diff;
+            totalAmount += (diff * price);
+            
+            document.getElementById('totalQtyDisplay').innerText = totalQty;
         };
 
         document.getElementById('orderDate').valueAsDate = new Date();
@@ -197,7 +202,7 @@
             }
 
             const submitBtn = document.getElementById('submitBtn');
-            submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> <span>SENDING...</span>`;
+            submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin mr-1"></i> <span>SENDING...</span>`;
             submitBtn.disabled = true;
             submitBtn.classList.add('opacity-80');
 
@@ -225,7 +230,7 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             }).then(() => {
-                submitBtn.innerHTML = `<i class="fa-solid fa-check mr-2"></i> <span>SUCCESS!</span>`;
+                submitBtn.innerHTML = `<i class="fa-solid fa-check mr-1"></i> <span>SUCCESS!</span>`;
                 submitBtn.style.backgroundColor = "#10B981";
                 setTimeout(() => { window.location.reload(); }, 2500);
             }).catch(error => {
