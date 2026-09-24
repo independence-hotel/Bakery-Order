@@ -91,7 +91,7 @@
                                 <label class="text-[9px] text-slate-500 font-bold uppercase tracking-wider mb-0.5 block">Pickup Time *</label>
                                 <div class="relative">
                                     <!-- Input with DataList -->
-                                    <input type="text" id="pickupTime" list="timeOptions" placeholder="e.g. 02:30 PM" required autocomplete="off" class="w-full pl-6 pr-2 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:ring-1 focus:ring-navyPrimary font-semibold text-slate-700">
+                                    <input type="text" id="pickupTime" list="timeOptions" placeholder="e.g. 05:30 AM" required autocomplete="off" class="w-full pl-6 pr-2 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:ring-1 focus:ring-navyPrimary font-semibold text-slate-700">
                                     <datalist id="timeOptions"></datalist>
                                     <i class="fa-regular fa-clock absolute left-2 top-2 text-slate-400 text-[11px]"></i>
                                 </div>
@@ -143,17 +143,20 @@
     </div>
 
     <script>
-        // Generate ALL 24-hour AM/PM Time Options dynamically into DataList (every 1 minute)
+        // Generate Time Options: Every 5 minutes, starting from 05:30 AM for a full 24 hours
         const timeDatalist = document.getElementById('timeOptions');
         let optionsHTML = '';
-        for (let i = 0; i < 24; i++) { 
-            for (let j = 0; j < 60; j++) { // Changed to j++ to include every single minute
-                let hour = i % 12 || 12;
-                let ampm = i < 12 ? 'AM' : 'PM';
-                let min = j < 10 ? '0' + j : j; // Ensure two digits for minutes (e.g. 05)
-                let displayHour = hour < 10 ? '0' + hour : hour;
-                optionsHTML += `<option value="${displayHour}:${min} ${ampm}">`;
-            }
+        for (let m = 0; m < 24 * 60; m += 5) { 
+            let totalMinutes = (330 + m) % (24 * 60); // 330 minutes = 05:30 AM
+            let i = Math.floor(totalMinutes / 60);
+            let j = totalMinutes % 60;
+
+            let hour = i % 12 || 12;
+            let ampm = i < 12 ? 'AM' : 'PM';
+            let min = j < 10 ? '0' + j : j; // Ensure two digits for minutes
+            let displayHour = hour < 10 ? '0' + hour : hour;
+            
+            optionsHTML += `<option value="${displayHour}:${min} ${ampm}">`;
         }
         timeDatalist.innerHTML = optionsHTML;
 
