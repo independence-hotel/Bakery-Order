@@ -45,10 +45,12 @@
         <div>
             <!-- Compact Mobile Header -->
             <div class="bg-navyPrimary text-center py-4 px-3 shadow-md rounded-b-2xl mb-3 relative overflow-hidden">
-                <!-- White Logo on Transparent Glass Background -->
-                <div class="bg-white/10 backdrop-blur-sm p-2 rounded-xl inline-block mb-2 shadow-inner border border-white/20">
-                    <img src="Logo%20PNG-white.png" alt="Logo" class="h-9 w-auto mx-auto object-contain" onerror="this.onerror=null; this.src='logo.png';">
+                
+                <!-- Solid White Background for Logo to make it clearly visible -->
+                <div class="bg-white p-2.5 rounded-xl inline-block mb-2 shadow-md border border-slate-200">
+                    <img src="Logo PNG-white.png" alt="Logo" class="h-9 w-auto mx-auto object-contain">
                 </div>
+                
                 <h1 class="text-white text-xs font-extrabold tracking-widest uppercase">BAKERY ORDER</h1>
                 <p class="text-slate-300 text-[9px] mt-0.5 font-semibold tracking-wider">INDEPENDENCE HOTEL BY DARA</p>
             </div>
@@ -68,9 +70,9 @@
                             <div class="relative">
                                 <select id="branch" required class="w-full pl-7 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:ring-1 focus:ring-navyPrimary appearance-none font-semibold text-slate-700">
                                     <option value="">Select Branch...</option>
-                                    <option value="Independence Beach">Independence Beach</option>
-                                    <option value="Seaview">Seaview</option>
-                                    <option value="Island View (R9)">Island View (R9)</option>
+                                    <option value="BROWN - Independence Beach">BROWN - Independence Beach</option>
+                                    <option value="BROWN - Seaview">BROWN - Seaview</option>
+                                    <option value="BROWN - Island View (R9)">BROWN - Island View (R9)</option>
                                 </select>
                                 <i class="fa-solid fa-location-dot absolute left-2.5 top-2 text-slate-400 text-[11px]"></i>
                                 <i class="fa-solid fa-chevron-down absolute right-3 top-2.5 text-slate-400 text-[9px]"></i>
@@ -124,9 +126,8 @@
         </div>
     </div>
 
-    <!-- Sticky Footer Summary (Fixed height issue) -->
+    <!-- Sticky Footer Summary -->
     <div class="fixed bottom-0 left-0 w-full bg-transparent p-3 z-20 pointer-events-none">
-        <!-- Replaced app-container with max-w-[430px] to prevent 100vh stretch bug -->
         <div class="max-w-[430px] mx-auto bg-white/95 backdrop-blur-md border border-slate-200 p-3 shadow-2xl rounded-2xl pointer-events-auto flex items-center justify-between">
             <div>
                 <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Total Quantity</p>
