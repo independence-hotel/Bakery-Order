@@ -43,16 +43,19 @@
 
     <div class="app-container flex flex-col justify-between">
         <div>
-            <!-- Compact Mobile Header -->
-            <div class="bg-navyPrimary text-center py-4 px-3 shadow-md rounded-b-2xl mb-3 relative overflow-hidden">
+            <!-- Banner Image Header with Text Overlay -->
+            <div class="relative w-full h-36 shadow-md rounded-b-2xl mb-3 overflow-hidden bg-navyDark">
+                <!-- Background Banner Image -->
+                <img src="Gemini_Generated_Image_82uzoh82uzoh82uz.jpg" alt="Bakery Banner" class="w-full h-full object-cover">
                 
-                <!-- Logo -->
-                <div class="bg-white p-3 rounded-xl inline-block mb-2 shadow-md border border-slate-200">
-                    <img src="Logo PNG-white.png" alt="Logo" class="h-14 w-auto mx-auto object-contain" onerror="this.onerror=null; this.src='logo.png';">
+                <!-- Dark Gradient Overlay for Text Readability -->
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-[#0A192F]/50 to-transparent"></div>
+                
+                <!-- Centered Text -->
+                <div class="absolute bottom-4 left-0 w-full text-center z-10 px-2">
+                    <h1 class="text-white text-sm font-extrabold tracking-widest uppercase drop-shadow-lg">BAKERY ORDER</h1>
+                    <p class="text-slate-300 text-[9px] mt-1 font-semibold tracking-wider drop-shadow-lg">INDEPENDENCE HOTEL BY DARA</p>
                 </div>
-                
-                <h1 class="text-white text-xs font-extrabold tracking-widest uppercase">BAKERY ORDER</h1>
-                <p class="text-slate-300 text-[9px] mt-0.5 font-semibold tracking-wider">INDEPENDENCE HOTEL BY DARA</p>
             </div>
 
             <form id="orderForm" class="px-3 space-y-3">
