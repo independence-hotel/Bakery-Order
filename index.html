@@ -46,9 +46,9 @@
             <!-- Compact Mobile Header -->
             <div class="bg-navyPrimary text-center py-4 px-3 shadow-md rounded-b-2xl mb-3 relative overflow-hidden">
                 
-                <!-- Solid White Background for Logo to make it clearly visible -->
-                <div class="bg-white p-2.5 rounded-xl inline-block mb-2 shadow-md border border-slate-200">
-                    <img src="Logo PNG-white.png" alt="Logo" class="h-12 w-auto mx-auto object-contain">
+                <!-- Logo -->
+                <div class="bg-white p-3 rounded-xl inline-block mb-2 shadow-md border border-slate-200">
+                    <img src="Logo PNG-white.png" alt="Logo" class="h-14 w-auto mx-auto object-contain" onerror="this.onerror=null; this.src='logo.png';">
                 </div>
                 
                 <h1 class="text-white text-xs font-extrabold tracking-widest uppercase">BAKERY ORDER</h1>
@@ -70,9 +70,9 @@
                             <div class="relative">
                                 <select id="branch" required class="w-full pl-7 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:ring-1 focus:ring-navyPrimary appearance-none font-semibold text-slate-700">
                                     <option value="">Select Branch...</option>
-                                    <option value="BROWN - Independence Beach">BROWN - Independence Beach</option>
-                                    <option value="BROWN - Seaview">BROWN - Seaview</option>
-                                    <option value="BROWN - Island View (R9)">BROWN - Island View (R9)</option>
+                                    <option value="Independence Beach">Independence Beach</option>
+                                    <option value="Seaview">Seaview</option>
+                                    <option value="Island View (R9)">Island View (R9)</option>
                                 </select>
                                 <i class="fa-solid fa-location-dot absolute left-2.5 top-2 text-slate-400 text-[11px]"></i>
                                 <i class="fa-solid fa-chevron-down absolute right-3 top-2.5 text-slate-400 text-[9px]"></i>
@@ -90,7 +90,9 @@
                             <div>
                                 <label class="text-[9px] text-slate-500 font-bold uppercase tracking-wider mb-0.5 block">Pickup Time *</label>
                                 <div class="relative">
-                                    <input type="time" id="pickupTime" required class="w-full pl-6 pr-2 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:ring-1 focus:ring-navyPrimary font-semibold text-slate-700">
+                                    <!-- Input with DataList -->
+                                    <input type="text" id="pickupTime" list="timeOptions" placeholder="e.g. 02:30 PM" required autocomplete="off" class="w-full pl-6 pr-2 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:ring-1 focus:ring-navyPrimary font-semibold text-slate-700">
+                                    <datalist id="timeOptions"></datalist>
                                     <i class="fa-regular fa-clock absolute left-2 top-2 text-slate-400 text-[11px]"></i>
                                 </div>
                             </div>
@@ -120,7 +122,7 @@
             </form>
         </div>
 
-        <!-- Footer Copyright inside container -->
+        <!-- Footer Copyright -->
         <div class="text-center mt-6 mb-20">
             <p style="font-size: 9px; color: #94a3b8; font-weight: 300;">@2026 Independence Hotel, Sihanoukville</p>
         </div>
@@ -141,6 +143,19 @@
     </div>
 
     <script>
+        // Generate AM/PM Time Options dynamically into DataList
+        const timeDatalist = document.getElementById('timeOptions');
+        for (let i = 6; i <= 20; i++) { 
+            for (let j = 0; j < 60; j += 30) {
+                let hour = i % 12 || 12;
+                let ampm = i < 12 ? 'AM' : 'PM';
+                let min = j === 0 ? '00' : '30';
+                let displayHour = hour < 10 ? '0' + hour : hour;
+                let timeStr = `${displayHour}:${min} ${ampm}`;
+                timeDatalist.innerHTML += `<option value="${timeStr}">`;
+            }
+        }
+
         const bakeryItems = [
             { id: 'item1', name: 'Pain Croissant', price: 2.00 },
             { id: 'item2', name: 'Chocolate Croissant', price: 2.50 },
