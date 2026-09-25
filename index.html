@@ -324,9 +324,12 @@
             document.getElementById('totalQtyDisplay').innerText = totalQty;
         };
 
-        // --- LOCAL STORAGE: LOAD SAVED PREFERENCES ---
-        document.getElementById('orderDate').valueAsDate = new Date();
+        // --- ORDER DATE: DEFAULT TO TOMORROW (TODAY + 1) ---
+        let tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        document.getElementById('orderDate').valueAsDate = tomorrow;
 
+        // --- LOCAL STORAGE: LOAD SAVED PREFERENCES ---
         if (localStorage.getItem('brown_branch')) {
             document.getElementById('branch').value = localStorage.getItem('brown_branch');
         }
