@@ -276,13 +276,9 @@
                     <h3 class="font-bold text-xs text-slate-900">${item.name}</h3>
                 </div>
                 <div class="flex items-center space-x-1.5 bg-slate-50 rounded-lg p-1 border border-slate-200">
-                    <button type="button" class="w-6 h-6 flex items-center justify-center text-navyPrimary bg-white rounded-md shadow-sm border border-slate-200 btn-press font-bold transition-all" onclick="updateQty('${item.id}', -1, ${item.price})">
-                        <i class="fa-solid fa-minus text-[9px]"></i>
-                    </button>
+                    <button type="button" class="px-2 h-6 flex items-center justify-center text-navyPrimary bg-white rounded-md shadow-sm border border-slate-200 btn-press font-extrabold text-[10px] transition-all" onclick="updateQty('${item.id}', -10, ${item.price})">-10</button>
                     <input type="number" id="qty-${item.id}" value="0" min="0" class="font-black text-navyDark w-8 text-center text-xs bg-transparent focus:outline-none" oninput="manualInputQty('${item.id}', this.value, ${item.price})">
-                    <button type="button" class="w-6 h-6 flex items-center justify-center text-white bg-navyPrimary rounded-lg shadow-sm btn-press font-bold transition-all" onclick="updateQty('${item.id}', 1, ${item.price})">
-                        <i class="fa-solid fa-plus text-[9px]"></i>
-                    </button>
+                    <button type="button" class="px-2 h-6 flex items-center justify-center text-white bg-navyPrimary rounded-lg shadow-sm btn-press font-extrabold text-[10px] transition-all" onclick="updateQty('${item.id}', 10, ${item.price})">+10</button>
                 </div>
             `;
             menuContainer.appendChild(card);
@@ -294,13 +290,15 @@
         window.updateQty = function(id, change, price) {
             let currentQty = quantities[id];
             let newQty = currentQty + change;
-            if (newQty < 0) return; 
+            if (newQty < 0) newQty = 0; // Prevent negative values
+
+            let actualChange = newQty - currentQty;
 
             quantities[id] = newQty;
             document.getElementById(`qty-${id}`).value = newQty;
 
-            totalQty += change;
-            totalAmount += (change * price);
+            totalQty += actualChange;
+            totalAmount += (actualChange * price);
             
             document.getElementById('totalQtyDisplay').innerText = totalQty;
         };
