@@ -153,16 +153,23 @@
         </div>
     </div>
 
-    <!-- Confirmation Modal (Yes/Cancel) -->
+    <!-- Confirmation Modal with Summary -->
     <div id="confirmModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-2xl max-w-xs w-full p-5 shadow-2xl animate-fade-in text-center space-y-4 border border-slate-100">
-            <div class="w-12 h-12 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center mx-auto text-lg border border-amber-100 shadow-sm">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl animate-fade-in text-center space-y-3 border border-slate-100">
+            <div class="w-10 h-10 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center mx-auto text-base border border-amber-100 shadow-sm">
                 <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
             <div>
-                <h3 class="font-extrabold text-sm text-slate-900 uppercase">Confirm Order</h3>
-                <p class="text-[11px] text-slate-500 mt-1">Are you sure you want to submit this bakery order to the kitchen?</p>
+                <h3 class="font-extrabold text-xs text-slate-900 uppercase">CONFIRM ORDER</h3>
             </div>
+
+            <!-- Summary Box -->
+            <div id="orderSummaryBox" class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-left space-y-1.5 text-[10px]">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <p class="text-[10px] text-slate-500 font-medium">Are you sure you want to submit this order?</p>
+
             <div class="grid grid-cols-2 gap-2 pt-1">
                 <button type="button" id="cancelBtn" class="bg-slate-100 hover:bg-slate-200 text-slate-700 py-2.5 rounded-xl font-bold text-xs transition-all btn-press">
                     Cancel
@@ -276,9 +283,9 @@
                     <h3 class="font-bold text-xs text-slate-900">${item.name}</h3>
                 </div>
                 <div class="flex items-center space-x-1.5 bg-slate-50 rounded-lg p-1 border border-slate-200">
-                    <button type="button" class="px-2 h-6 flex items-center justify-center text-navyPrimary bg-white rounded-md shadow-sm border border-slate-200 btn-press font-extrabold text-[10px] transition-all" onclick="updateQty('${item.id}', -10, ${item.price})">-10</button>
-                    <input type="number" id="qty-${item.id}" value="0" min="0" class="font-black text-navyDark w-8 text-center text-xs bg-transparent focus:outline-none" oninput="manualInputQty('${item.id}', this.value, ${item.price})">
-                    <button type="button" class="px-2 h-6 flex items-center justify-center text-white bg-navyPrimary rounded-lg shadow-sm btn-press font-extrabold text-[10px] transition-all" onclick="updateQty('${item.id}', 10, ${item.price})">+10</button>
+                    <button type="button" class="px-2 h-6 flex items-center justify-center text-slate-500 bg-white rounded-md shadow-sm border border-slate-200 btn-press font-bold text-[9px] transition-all" onclick="updateQty('${item.id}', -10, ${item.price})">-10</button>
+                    <input type="number" id="qty-${item.id}" value="0" min="0" class="font-black text-navyDark w-9 text-center text-sm bg-transparent focus:outline-none" oninput="manualInputQty('${item.id}', this.value, ${item.price})">
+                    <button type="button" class="px-2 h-6 flex items-center justify-center text-slate-500 bg-white rounded-md shadow-sm border border-slate-200 btn-press font-bold text-[9px] transition-all" onclick="updateQty('${item.id}', 10, ${item.price})">+10</button>
                 </div>
             `;
             menuContainer.appendChild(card);
@@ -290,7 +297,7 @@
         window.updateQty = function(id, change, price) {
             let currentQty = quantities[id];
             let newQty = currentQty + change;
-            if (newQty < 0) newQty = 0; // Prevent negative values
+            if (newQty < 0) newQty = 0; 
 
             let actualChange = newQty - currentQty;
 
@@ -348,8 +355,9 @@
         const cancelBtn = document.getElementById('cancelBtn');
         const confirmYesBtn = document.getElementById('confirmYesBtn');
         const loadingOverlay = document.getElementById('loadingOverlay');
+        const orderSummaryBox = document.getElementById('orderSummaryBox');
 
-        // Open Confirmation Modal
+        // Open Confirmation Modal with Summary
         openConfirmBtn.addEventListener('click', function() {
             if (totalQty === 0) {
                 alert("Please add at least one bakery item to your order!");
@@ -359,6 +367,37 @@
                 orderForm.reportValidity();
                 return;
             }
+
+            // Build Summary Content
+            const branch = document.getElementById('branch').value;
+            const orderDate = document.getElementById('orderDate').value;
+            const pickupTime = document.getElementById('pickupTime').value;
+            const orderedBy = document.getElementById('orderedBy').value;
+
+            let summaryHTML = `
+                <div class="border-b border-slate-200 pb-1.5 space-y-0.5">
+                    <p class="font-bold text-slate-700">📍 ${branch}</p>
+                    <p class="text-slate-500">📅 Date: <span class="font-semibold text-slate-700">${orderDate}</span> | ⏰ Time: <span class="font-semibold text-slate-700">${pickupTime}</span></p>
+                    <p class="text-slate-500">👤 Staff: <span class="font-semibold text-slate-700">${orderedBy}</span></p>
+                </div>
+                <div class="space-y-1 pt-1 max-h-32 overflow-y-auto">
+            `;
+
+            bakeryItems.forEach(item => {
+                let qty = quantities[item.id] || 0;
+                if (qty > 0) {
+                    summaryHTML += `
+                        <div class="flex justify-between items-center text-slate-700">
+                            <span>${item.emoji} ${item.name}</span>
+                            <span class="font-extrabold text-navyPrimary">x${qty}</span>
+                        </div>
+                    `;
+                }
+            });
+
+            summaryHTML += `</div>`;
+            orderSummaryBox.innerHTML = summaryHTML;
+
             confirmModal.classList.remove('hidden');
         });
 
