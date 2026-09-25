@@ -319,7 +319,29 @@
             document.getElementById('totalQtyDisplay').innerText = totalQty;
         };
 
+        // --- LOCAL STORAGE: LOAD SAVED PREFERENCES ---
         document.getElementById('orderDate').valueAsDate = new Date();
+
+        if (localStorage.getItem('brown_branch')) {
+            document.getElementById('branch').value = localStorage.getItem('brown_branch');
+        }
+        if (localStorage.getItem('brown_pickupTime')) {
+            document.getElementById('pickupTime').value = localStorage.getItem('brown_pickupTime');
+        }
+        if (localStorage.getItem('brown_orderedBy')) {
+            document.getElementById('orderedBy').value = localStorage.getItem('brown_orderedBy');
+        }
+
+        // --- LOCAL STORAGE: SAVE PREFERENCES ON CHANGE ---
+        document.getElementById('branch').addEventListener('change', function() {
+            localStorage.setItem('brown_branch', this.value);
+        });
+        document.getElementById('pickupTime').addEventListener('input', function() {
+            localStorage.setItem('brown_pickupTime', this.value);
+        });
+        document.getElementById('orderedBy').addEventListener('input', function() {
+            localStorage.setItem('brown_orderedBy', this.value);
+        });
 
         // Modal Elements
         const orderForm = document.getElementById('orderForm');
